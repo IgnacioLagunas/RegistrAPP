@@ -1,0 +1,20 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="user-form">
+    <h1>Ingreso {{rol == 'estudiante' ? 'Estudiante' : 'Docente'}}</h1>
+    <form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+      <ion-item>
+        <ion-input type="text" name="username" ngModel required></ion-input>
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" name="password" ngModel required></ion-input>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </ion-item>
+      <ion-button type="submit" expand="block"  [disabled]="formulario.invalid">Ingresar</ion-button>
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p>Olvidaste tu contraseña? click <a routerLink="/reset-password">aqui</a></p>
+    </form>
+  </div>
+</ion-content>

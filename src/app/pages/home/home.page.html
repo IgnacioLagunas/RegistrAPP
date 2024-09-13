@@ -1,0 +1,13 @@
+
+
+<ion-content [fullscreen]="true">
+  <div class="home-container">
+    <h1>Bienvenido {{ user?.username }}!</h1>
+     <ion-button *ngIf="user.rol === 'estudiante'" >Registrar asistencia
+      <ion-icon slot="end" name="add-circle"></ion-icon>
+     </ion-button>
+     <ion-button *ngIf="user.rol === 'docente'" >Registrar nueva clase
+      <ion-icon slot="end" name="list"></ion-icon>
+     </ion-button>
+  </div>
+</ion-content>
