@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {SessionService} from '../../services/session.service';
+import {SessionService} from '../../services/session/session.service';
+import {StudentsService} from '../../services/students/students.service';
+import {TeachersService} from '../../services/teachers/teachers.service';
 
 @Component({
   selector: 'app-login',
@@ -13,29 +15,8 @@ export class LoginPage implements OnInit {
   users: any[] = [];
   errorMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router, private sessionService: SessionService) {
-    this.users = [
-      {
-        username: 'docente1',
-        password: '1234',
-        rol: 'docente'
-      },
-      {
-        username: 'estudiante1',
-        password: '1234',
-        rol: 'estudiante'
-      },
-      {
-        username: 'docente2',
-        password: '1234',
-        rol: 'docente'
-      },
-      {
-        username: 'estudiante2',
-        password: '1234',
-        rol: 'estudiante'
-      }
-    ]
+  constructor(private route: ActivatedRoute, private router: Router, private sessionService: SessionService, private studentsService: StudentsService, private teachersService: TeachersService) {
+   
   }
 
   ngOnInit() {
@@ -46,30 +27,35 @@ export class LoginPage implements OnInit {
 
   onSubmit(formulario: any) {
     console.log('Formulario enviado:', formulario.value);
-    console.log(this.users)
-    if (this.validateLogin(formulario.value.username, formulario.value.password)) {
+    let usuarioEsValidado = false;
+    if (this.rol === 'estudiante') {
+      usuarioEsValidado = this.validateLogin(formulario.value.username, formulario.value.password, this.studentsService)
+    } else if (this.rol === 'docente') {
+      usuarioEsValidado = this.validateLogin(formulario.value.username, formulario.value.password, this.teachersService)
+    }
+    if (usuarioEsValidado) {
       this.router.navigate(['/home']);
     } 
   }
 
-  validateLogin(username: string, password: string) {
-    const user = this.users.find(u => u.username === username);
-    if(!user){
-      this.errorMessage = 'Credenciales inválidas';
-      return false;
-    }
-    if(user.rol !== this.rol){
-      this.errorMessage = 'Usuario no autorizado';
-      return false
-    }
-    if (user && user.password === password) {
-      this.sessionService.setUser(user);
-      return true;
-    } else {
-      this.errorMessage = 'Credenciales inválidas';
-      return false;
-    }
+  validateLogin(username: string, password: string, service: any) {
+      service.getAll().subscribe((users: any) => {
+        console.log(users)
+        this.users = users 
+      })  
+      const user = this.users.find((user: any) => {
+        return user.username === username
+      })
+      if (user && user.password === password) {
+        this.sessionService.setUser(user);
+        this.errorMessage = '';
+        return true;
+      } else {
+        this.errorMessage = 'Credenciales inválidas';
+        return false;
+      }    
   }
+  
 }
 
 

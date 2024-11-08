@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { SessionService } from '../services/session.service';	
+import { SessionService } from '../services/session/session.service';	
 
 
 export const logedGuard: CanActivateFn = async (route, state) => {

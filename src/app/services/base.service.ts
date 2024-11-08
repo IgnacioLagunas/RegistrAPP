@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+const API_ENDPOINT = new InjectionToken<string>('API_ENDPOINT');
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  useFactory: (http: HttpClient) => new BaseService(http, 'default-endpoint'),
+  deps: [HttpClient]
 })
 export class BaseService<T> {
-  constructor(private readonly http: HttpClient, private readonly endpoint: string) { }
+  constructor(private readonly http: HttpClient, @Inject(API_ENDPOINT) private endpoint: string) { }
 
-  private readonly apiUrl = 'https://tu-api-url.com';
+  private readonly apiUrl = 'http://localhost:3000';
 
   // Obtener todos los elementos
   getAll(): Observable<T[]> {
