@@ -3,24 +3,28 @@
 		{
 			"id": 1,
 			"username": "docente1",
-			"password": "1234"
+			"password": "1234",
+			"rol": "profesor"
 		},
 		{
 			"id": 2,
 			"username": "docente2",
-			"password": "1234"
+			"password": "1234",
+			"rol": "profesor"
 		}
 	],
 	"students": [
 		{
 			"id": 1,
 			"username": "estudiante1",
-			"password": "1234"
+			"password": "1234",
+			"rol": "estudiante"
 		},
 		{
 			"id": 2,
 			"username": "estudiante2",
-			"password": "1234"
+			"password": "1234",
+			"rol": "estudiante"
 		}
 	]
 }

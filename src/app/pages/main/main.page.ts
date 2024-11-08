@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from 'src/app/services/session/session.service';
+
 
 @Component({
   selector: 'app-main',
@@ -7,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPage implements OnInit {
 
-  constructor() {
+  user:any;
+
+  constructor(private sessionService: SessionService) {
     
   }
   
  
 
   ngOnInit() {
+    this.sessionService.getUserObservable().subscribe((user) => {
+      this.user = user
+    })
   }
 
 }

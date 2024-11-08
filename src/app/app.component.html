@@ -2,12 +2,12 @@
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>RegistraAPP</ion-title>
+        <ion-title>RegistraAPP <span *ngIf="user">{{user.username}}</span></ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
+    <ion-content class="ion-padding" *ngIf="user">
       <ion-list>
-        <ion-button *ngIf="user" expand="block" (click)="logout()">Cerrar sesion
+        <ion-button  expand="block" (click)="logout()">Cerrar sesion
           <ion-icon slot="end" name="log-out-outline"></ion-icon>
         </ion-button>
       </ion-list>
