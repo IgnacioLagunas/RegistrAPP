@@ -2,11 +2,12 @@
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>RegistraAPP <span *ngIf="user">{{user.username}}</span></ion-title>
+        <ion-title>Menu </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding" *ngIf="user">
       <ion-list>
+        <span *ngIf="user">{{user.username}}</span>
         <ion-button  expand="block" (click)="logout()">Cerrar sesion
           <ion-icon slot="end" name="log-out-outline"></ion-icon>
         </ion-button>
@@ -19,10 +20,12 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Menu</ion-title>
+        <ion-title>RegistrAPP</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+    <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu.
+    
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
   </div>
-  <ion-router-outlet></ion-router-outlet>
 </ion-app>

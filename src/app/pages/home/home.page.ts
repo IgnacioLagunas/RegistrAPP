@@ -17,5 +17,12 @@ export class HomePage implements OnInit {
       this.user = user
     })
   }
+  empezarClase(){
+    console.log("empezar clase")
+  }
+
+  listarClases(){
+    console.log("listar clases")
+  }
 
 }

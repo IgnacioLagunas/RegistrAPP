@@ -6,8 +6,10 @@
      <ion-button *ngIf="user.rol === 'estudiante'" >Registrar asistencia
       <ion-icon slot="end" name="add-circle"></ion-icon>
      </ion-button>
-     <ion-button *ngIf="user.rol === 'profesor'" >Registrar nueva clase
-      <ion-icon slot="end" name="list"></ion-icon>
-     </ion-button>
+     <div *ngIf="user.rol === 'profesor'">
+       <ion-button *ngIf="user.rol === 'profesor'" (click)="empezarClase()">Empezar clase</ion-button>
+       <ion-button *ngIf="user.rol === 'profesor'" (click)="listarClases()">Revisar clases</ion-button>
+
+     </div>
   </div>
 </ion-content>
