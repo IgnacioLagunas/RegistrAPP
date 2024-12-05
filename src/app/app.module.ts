@@ -10,11 +10,12 @@
   import { AppRoutingModule } from './app-routing.module';
   import { AppComponent } from './app.component';
   import {  HttpClientModule } from '@angular/common/http';
-  import { QRCodeModule } from 'angularx-qrcode';
+
+  
 
   @NgModule({
     declarations: [AppComponent],
-    imports: [HttpClientModule, QRCodeModule,BrowserModule,IonicStorageModule.forRoot(),FormsModule, IonicModule.forRoot(), AppRoutingModule ],
+    imports: [HttpClientModule,BrowserModule,IonicStorageModule.forRoot(),FormsModule, IonicModule.forRoot(), AppRoutingModule ],
     providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
     bootstrap: [AppComponent],
   })

@@ -24,7 +24,13 @@ const routes: Routes = [
     path: 'home',
     canActivate: [logedGuard],
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'registro-qr/:id_clase',
+    canActivate: [logedGuard],
+    loadChildren: () => import('./pages/registro-qr/registro-qr.module').then( m => m.RegistroQrPageModule)
   }
+
 
 
 

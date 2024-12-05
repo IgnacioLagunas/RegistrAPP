@@ -1,30 +1,77 @@
 {
-	"teachers": [
-		{
-			"id": 1,
-			"username": "docente1",
-			"password": "1234",
-			"rol": "profesor"
-		},
-		{
-			"id": 2,
-			"username": "docente2",
-			"password": "1234",
-			"rol": "profesor"
-		}
-	],
-	"students": [
-		{
-			"id": 1,
-			"username": "estudiante1",
-			"password": "1234",
-			"rol": "estudiante"
-		},
-		{
-			"id": 2,
-			"username": "estudiante2",
-			"password": "1234",
-			"rol": "estudiante"
-		}
-	]
+  "teachers": [
+    {
+      "id": 1,
+      "username": "docente1",
+      "password": "1234",
+      "rol": "profesor"
+    },
+    {
+      "id": 2,
+      "username": "docente2",
+      "password": "1234",
+      "rol": "profesor"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "username": "estudiante1",
+      "password": "1234",
+      "rol": "estudiante"
+    },
+    {
+      "id": 2,
+      "username": "estudiante2",
+      "password": "1234",
+      "rol": "estudiante"
+    }
+  ],
+  "clases": [
+    {
+      "id": "e030",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "dc6c",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "1fa7",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "5c2b",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "e473",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "23aa",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "42d7",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "f08c",
+      "nombre": "Clase 1",
+      "alumnos": []
+    },
+    {
+      "id": "f936",
+      "nombre": "Clase 1",
+      "alumnos": []
+    }
+  ]
 }
