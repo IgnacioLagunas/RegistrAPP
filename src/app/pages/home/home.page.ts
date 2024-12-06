@@ -16,6 +16,7 @@ export class HomePage implements OnInit {
 
   user: any;
   api_url = 'http://localhost:3000';
+  idClase: string = ''; 
 
   constructor(private sessionService: SessionService, route: ActivatedRoute, private router: Router, private clasesService: ClasesService ) { }
 
@@ -42,9 +43,13 @@ export class HomePage implements OnInit {
     console.log("listar clases")
   }
 
+
   registrarAsistencia(){
-    const scannedId = this.escanearQr();
-    this.clasesService.getOne(scannedId).subscribe({
+    if (!this.idClase) {
+      console.error('Por favor ingresa un ID de clase');
+      return;
+    }
+    this.clasesService.getOne(this.idClase).subscribe({
       next: (clase) => {
         let claseRegistro: Clase = clase;
 
@@ -64,7 +69,7 @@ export class HomePage implements OnInit {
         claseRegistro.registros.push(nuevoRegistro);
 
         // Actualizar la clase en el backend
-        this.clasesService.updateOne(scannedId, claseRegistro).subscribe({
+        this.clasesService.updateOne(this.idClase, claseRegistro).subscribe({
           next: (updatedClase) => {
             console.log('ASISTENCIA REGISTRADA:', updatedClase);
           },
@@ -74,7 +79,7 @@ export class HomePage implements OnInit {
         });
       },
       error: (err) => {
-        console.error(`Error: clase con id ${scannedId} no existe`);
+        console.error(`Error: clase con id ${this.idClase} no existe`);
       },
     });
   }
@@ -89,9 +94,5 @@ export class HomePage implements OnInit {
   }
 
 
-  escanearQr(){
-    const claseId = '24da';
-    return claseId;
-  }
 
 }

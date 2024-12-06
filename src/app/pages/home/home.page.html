@@ -6,6 +6,7 @@
      <ion-button *ngIf="user.rol === 'estudiante'"  (click)="registrarAsistencia()">Registrar asistencia
       <ion-icon slot="end" name="add-circle"></ion-icon>
      </ion-button>
+     <ion-input [(ngModel)]="idClase" type="text" placeholder="Ingrese el ID de la clase"></ion-input>
      <div *ngIf="user.rol === 'profesor'">
        <ion-button *ngIf="user.rol === 'profesor'" (click)="empezarClase()">Empezar clase</ion-button>
        <ion-button *ngIf="user.rol === 'profesor'" (click)="listarClases()">Revisar clases</ion-button>
