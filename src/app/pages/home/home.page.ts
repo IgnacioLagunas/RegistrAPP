@@ -5,6 +5,7 @@ import {
   ClasesService
  } from 'src/app/services/clases/clases.service';
 import { Clase } from 'src/app/models/clase.model';
+import { Registro } from 'src/app/models/registro.model';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomePage implements OnInit {
   }
   empezarClase(){
     this.clasesService.createOne({
-      nombre: 'Clase 1', alumnos: [],
+      nombre: 'Clase 1', registros: [],
     }).subscribe({
       next: (clase) => {
         console.log('Clase creada:', clase);
@@ -42,42 +43,55 @@ export class HomePage implements OnInit {
   }
 
   registrarAsistencia(){
-    const scannedId = '0';
-    let claseRegistro: Clase = {
-      nombre: '',
-      alumnos: [],
-    };
+    const scannedId = this.escanearQr();
     this.clasesService.getOne(scannedId).subscribe({
       next: (clase) => {
-        claseRegistro = clase
+        let claseRegistro: Clase = clase;
+
+        // Verificar si la asistencia ya está registrada
+        if (this.asistenciaRepetida(claseRegistro)) {
+          console.log('Asistencia ya registrada para el alumno', this.user.id);
+          return;
+        }
+
+        // Crear un nuevo registro de asistencia
+        const nuevoRegistro: Registro = {
+          alumno_id: this.user.id,
+          date: new Date(),
+        };
+
+        // Agregar el nuevo registro a la lista
+        claseRegistro.registros.push(nuevoRegistro);
+
+        // Actualizar la clase en el backend
+        this.clasesService.updateOne(scannedId, claseRegistro).subscribe({
+          next: (updatedClase) => {
+            console.log('ASISTENCIA REGISTRADA:', updatedClase);
+          },
+          error: (err) => {
+            console.error('Error al registrar asistencia:', err);
+          },
+        });
       },
       error: (err) => {
-        console.error(`Error clase con id ${scannedId} no existe `);
-        return;
-      },
-    })
-    if (this.asistenciaRepetida(claseRegistro)) {
-      console.log('Asistencia ya registrada para el alumno', this.user.id);
-      return;
-    }
-    claseRegistro.alumnos.push(this.user.id)
-    this.clasesService.updateOne(scannedId, claseRegistro).subscribe({
-      next: (clase) => {
-        console.log('ASISTENCIA REGISTRADA:', clase);
-      },
-      error: (err) => {
-        console.error('Error al registrar asistencia:', err);
-        return
+        console.error(`Error: clase con id ${scannedId} no existe`);
       },
     });
   }
 
-  asistenciaRepetida(clase: { alumnos?: any; }) {
-    if (clase.alumnos.includes(this.user.id)) {
-      
-      return true;
-    }
-    return false;
+  asistenciaRepetida(clase: Clase) {
+    console.log({clase})
+    const registroEncontrado = clase.registros.find((registro: Registro) => {
+      return registro.alumno_id === this.user.id
+    })
+    console.log({registroEncontrado})
+    return registroEncontrado;
+  }
+
+
+  escanearQr(){
+    const claseId = '24da';
+    return claseId;
   }
 
 }

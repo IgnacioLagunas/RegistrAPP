@@ -1,5 +1,7 @@
+import { Registro } from "./registro.model";
+
 export interface Clase {
     id?: number;         
     nombre: string;
-    alumnos: number[];
+    registros: Registro[];
   }

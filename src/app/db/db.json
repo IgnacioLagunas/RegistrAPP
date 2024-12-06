@@ -1,13 +1,13 @@
 {
   "teachers": [
     {
-      "id": 1,
+      "id": "1",
       "username": "docente1",
       "password": "1234",
       "rol": "profesor"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "docente2",
       "password": "1234",
       "rol": "profesor"
@@ -15,13 +15,13 @@
   ],
   "students": [
     {
-      "id": 1,
+      "id": "1",
       "username": "estudiante1",
       "password": "1234",
       "rol": "estudiante"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "estudiante2",
       "password": "1234",
       "rol": "estudiante"
@@ -29,49 +29,47 @@
   ],
   "clases": [
     {
-      "id": "e030",
-      "nombre": "Clase 1",
-      "alumnos": []
+      "nombre": "",
+      "registros": [
+        {
+          "alumno_id": "1",
+          "date": "2024-12-06T02:38:09.333Z"
+        },
+        {
+          "alumno_id": "2",
+          "date": "2024-12-06T02:42:55.930Z"
+        }
+      ],
+      "id": "4873"
     },
     {
-      "id": "dc6c",
+      "id": "9dc9",
       "nombre": "Clase 1",
-      "alumnos": []
+      "registros": []
     },
     {
-      "id": "1fa7",
+      "id": "18a7",
       "nombre": "Clase 1",
-      "alumnos": []
+      "registros": []
     },
     {
-      "id": "5c2b",
+      "id": "64cf",
       "nombre": "Clase 1",
-      "alumnos": []
+      "registros": []
     },
     {
-      "id": "e473",
+      "id": "24da",
       "nombre": "Clase 1",
-      "alumnos": []
-    },
-    {
-      "id": "23aa",
-      "nombre": "Clase 1",
-      "alumnos": []
-    },
-    {
-      "id": "42d7",
-      "nombre": "Clase 1",
-      "alumnos": []
-    },
-    {
-      "id": "f08c",
-      "nombre": "Clase 1",
-      "alumnos": []
-    },
-    {
-      "id": "f936",
-      "nombre": "Clase 1",
-      "alumnos": []
+      "registros": [
+        {
+          "alumno_id": "1",
+          "date": "2024-12-06T02:58:02.580Z"
+        },
+        {
+          "alumno_id": "2",
+          "date": "2024-12-06T02:58:39.746Z"
+        }
+      ]
     }
   ]
 }
